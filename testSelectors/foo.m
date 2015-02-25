@@ -11,19 +11,19 @@
 @implementation foo
 
 - (void) barWithSpam {
-    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(didBarWithSpam:)]) {
+    if ([self.delegate respondsToSelector:@selector(didBarWithSpam:)]) {
         [self.delegate didBarWithSpam:@"SPAM"];
     }
 }
 
 - (void) barWithSpamAndEggs {
-    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(didBarWithSpam:andEggs:)]) {
+    if ([self.delegate respondsToSelector:@selector(didBarWithSpam:andEggs:)]) {
         [self.delegate didBarWithSpam:@"SPAM" andEggs:@"EGGS"];
     }
 }
 
 - (void) barWithSpamAndSausages {
-    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(didBarWithSpam:AndSausages:)]) {
+    if ([self.delegate respondsToSelector:@selector(didBarWithSpam:AndSausages:)]) {
         [self.delegate didBarWithSpam:@"SPAM" AndSausages:@"SAUSAGES"];
     }
 }

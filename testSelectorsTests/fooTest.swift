@@ -68,6 +68,4 @@ class fooTest: XCTestCase {
         fixture.barWithSpamAndSausages()
         XCTAssert(called, "Delegate with second argument in initial caps was not called")
     }
-    
-    
 }
