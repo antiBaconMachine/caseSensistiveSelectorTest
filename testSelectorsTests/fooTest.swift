@@ -25,6 +25,10 @@ class fooTest: XCTestCase {
         func didBarWithSpam(spam: String!, andEggs eggs: String!) {
             self.cb("\(spam) & \(eggs)")
         }
+        
+        func didBarWithSpam(spam: String!, andSausages sausages: String!) {
+            self.cb("\(spam) & \(sausages)")
+        }
     }
     
     var fixture = foo();
@@ -35,18 +39,35 @@ class fooTest: XCTestCase {
         fixture = foo();
     }
     
-    func testFoo() {
-        var i = 0;
+    func testSingleArgument() {
+        var called = false
         fixture.delegate = mockDelegate() {(str) in
-            if (i == 0) {
-                XCTAssertEqual(str, "SPAM");
-            } else {
-                XCTAssertEqual(str, "SPAM & EGGS");
-            }
-            i++;
+            XCTAssertEqual(str, "SPAM")
+            called = true
         }
-        fixture.go();
-        XCTAssertEqual(i, 2, "cb not called twice");
+        fixture.barWithSpam()
+        XCTAssert(called)
     }
+    
+    func testTwoArgumentsInitialLowerCase() {
+        var called = false
+        fixture.delegate = mockDelegate() {(str) in
+            XCTAssertEqual(str, "SPAM & EGGS")
+            called = true
+        }
+        fixture.barWithSpamAndEggs()
+        XCTAssert(called)
+    }
+    
+    func testTwoArgumentsInitialCap() {
+        var called = false
+        fixture.delegate = mockDelegate() {(str) in
+            XCTAssertEqual(str, "SPAM & SAUSAGES")
+            called = true
+        }
+        fixture.barWithSpamAndSausages()
+        XCTAssert(called, "Delegate with second argument in initial caps was not called")
+    }
+    
     
 }

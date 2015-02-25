@@ -11,10 +11,12 @@
 @protocol fooProtocol<NSObject>
 - (void) didBarWithSpam: (NSString*)spam;
 - (void) didBarWithSpam: (NSString*)spam andEggs: (NSString*)eggs;
-
+- (void) didBarWithSpam: (NSString*)spam AndSausages: (NSString*)sausages;
 @end
 
 @interface foo : NSObject
 @property id<fooProtocol> delegate;
--(void) go;
+-(void) barWithSpam;
+-(void) barWithSpamAndEggs;
+-(void) barWithSpamAndSausages;
 @end
